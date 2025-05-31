@@ -1,6 +1,17 @@
 # AI-Trading-Agent-on-Options-and-Futures
 NYCU 2025 Introduction to AI Team 55
 
+# WARNING
+
+Don't use `all_stocks_5yr.csv` train and test `LSTM` and `PPO`, please put the individual stock data into `data/`. 
+
+Since the large amount of `.csv` files, the data are not included in this repo. Please install them form  [Kaggle S&P 500 Dataset](https://www.kaggle.com/datasets/camnugent/sandp500)
+
+## Requirement
+
+- Python `3.11.x` or higher
+- Packeges in `requirement.txt`
+
 ---
 
 ## Introduction
