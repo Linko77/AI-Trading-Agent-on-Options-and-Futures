@@ -23,4 +23,7 @@ This project explores the use of artificial intelligence to develop trading stra
 
 ---
 
-## up to be done
+## Main Structure
+
+![Model Architecture](image/main_structure.png)
+
