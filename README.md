@@ -91,6 +91,7 @@ $$
 - Critic: 3-layer MLP estimating state `value`
 - Losses: actor loss + critic loss with entropy regularization
 
+---
 ## Results & Analysis
 
 ### Price Predict
@@ -109,6 +110,39 @@ $$
 | RandomForest(n_estimator=50)              | 0.491560 | 0.978410  |
 | RandomForest(n_estimator=100)             | 0.507226 | 0.9777222 |
 
+- LSTM and Random Forest better than Linear regression model (baseline)
+- LSTM perform best when hidden size=128, sequence length=30
+- The performance of LSTM become worse when hidden size=256 or sequence length=60, possibly due to overftting or noise (the information from 30 to 60 day is not important)
 
+#### Plots & data
+
+![rf](image/result_rf.png)
+
+![lstm](image/result_lstm.png)
+
+### Trading Agent
+
+- Stock: NRG
+- Period: 2017/02~2018/02
+- Initial princliple = 1000
+- DCA: spent 200$ per 5 days, cost = total spent money 
+- PPO & PPO+LSTM: quantity=100, cost = total premium
+
+| Model      | Profit   | Cost    | Return (Profit/Cost) |
+|------------|----------|---------|-----------------------|
+| DCA        | 2171.77  | 9600    | 22.64%                |
+| PPO        | 7719.51  | 4287.49 | 180.05%               |
+| PPO + LSTM | 9207.11  | 4323.89 | 212.94%               |
+
+![ppo](image/result_ppo.png)
+
+![ppo+lstm](image/result_ppo_lstm.png)
+
+- Two PPO model beat DCA in the test
+- The PPO + LSTM approach shows the highest return, meaning the LSTM predictions likely help the agent make better-timed decisions
+
+![ppo+lstm](image/result_rise_fall.png)
+
+- PPO+LSTM model can make a profit whether the stock rises or falls
 
 
