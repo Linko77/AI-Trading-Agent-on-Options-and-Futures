@@ -103,10 +103,10 @@ print(summary.tail(5))
 # print(results_df[results_df["Ticker"] == "AAPL"])
 
 # Optional: plot one stock result
-#sample_stock = np.random.choice(results_df['Ticker'].values)  # random
+sample_stock = np.random.choice(results_df['Ticker'].values)  # random
 #sample_stock = results_df.sort_values('R2').iloc[502]['Ticker'] #highest R-square
 #sample_stock = results_df.sort_values('R2').iloc[0]['Ticker'] #lowest R-square
-sample_stock = "AAPL"
+#sample_stock = "AAPL"
 sample_df = df[df['Name'] == sample_stock].copy()
 sample_df['date'] = pd.to_datetime(sample_df['date'])
 sample_df.sort_values('date', inplace=True)
