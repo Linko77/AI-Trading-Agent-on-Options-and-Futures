@@ -37,6 +37,11 @@ This project explores the use of artificial intelligence to develop trading stra
 - Only at-the-money (ATM) options
 - Premium = 1% * close_price
 
+#### State
+
+- OHLC, `Volume`, `MA5`, `MA10`, `RSI`, `MACD`
+- Future close predicted by model
+
 #### Action space
 
 1. hold
@@ -46,7 +51,16 @@ This project explores the use of artificial intelligence to develop trading stra
 #### Reward
 
 base on the profit of selected action
-![reward](image/reward.png)
+
+$$
+\text{reward} =
+\begin{cases}
+0, & \text{if hold} \\\\
+\max(p_{t+7} - p_t, 0) - \text{premium}, & \text{if buy call} \\\\
+\max(p_t - p_{t+7}, 0) - \text{premium}, & \text{if buy put}
+\end{cases}
+$$
+
 
 ### Price Predictor
 
@@ -56,16 +70,45 @@ base on the profit of selected action
 
 #### LSTM
 
-- Input Features: OHLC, Volume, MA5, MA10, RSI, MACD
+- Input Features: `OHLC`, `Volume`, `MA5`, `MA10`, `RSI`, `MACD`
 - Architecture: LSTM → Fully Connected Layer → Predicted Price
 
 #### Random Forest
 
-- Features: OHLC, MA5/10, Volatility
+- Features: `OHLC`, `MA5/10`, `Volatility`
 - Bootstrap + Random Feature Selection
 - Averaged predictions over multiple trees
 
 ### Trading Agent
+
+#### Dollar-Cost Averaging (DCA) (baseline)
+
+- Invest specific amount every few days
+
+#### PPO
+
+- Actor: 3-layer MLP outputting `action probabilities`
+- Critic: 3-layer MLP estimating state `value`
+- Losses: actor loss + critic loss with entropy regularization
+
+## Results & Analysis
+
+### Price Predict
+
+- Stock: NRG
+- Period: 2017/02~2018/02
+
+| Model                                      | MSE      | R²        |
+|-------------------------------------------|----------|-----------|
+| Linear regression model                   | 0.8329   | 0.9639    |
+| LSTM(hidden_size=64, seq_len=30)          | 0.302313 | 0.986806  |
+| LSTM(hidden_size=128, seq_len=30)         | 0.276351 | 0.987773  |
+| LSTM(hidden_size=256, seq_len=30)         | 0.293500 | 0.987014  |
+| LSTM(hidden_size=128, seq_len=60)         | 0.285079 | 0.987265  |
+| RandomForest(n_estimator=10)              | 0.533573 | 0.976564  |
+| RandomForest(n_estimator=50)              | 0.491560 | 0.978410  |
+| RandomForest(n_estimator=100)             | 0.507226 | 0.9777222 |
+
 
 
 
