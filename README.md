@@ -50,14 +50,14 @@ This project explores the use of artificial intelligence to develop trading stra
 
 #### State
 
-- OHLC, `Volume`, `MA5`, `MA10`, `RSI`, `MACD`
+- `OHLC`, `Volume`, `MA5`, `MA10`, `RSI`, `MACD`
 - Future close predicted by model
 
 #### Action space
 
-1. hold
-2. buy call (predict rise)
-3. buy put (predict fall)
+1. `hold`
+2. `buy call` (predict rise)
+3. `buy put` (predict fall)
 
 #### Reward
 
