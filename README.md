@@ -145,4 +145,19 @@ $$
 
 - PPO+LSTM model can make a profit whether the stock rises or falls
 
+### Limits
+
+When predict 7 days price by previous 30 days data, LSTM can’t predict sharp rise or fall 
+![limit_lstm](image/limit_lstm.png)
+
+PPO+LSTM model may be beated by DCA in longer period if the stock continue to rise
+![limit_ppo](image/limit_ppo.png)
+
+---
+## Reference
+
+- Kaggle: [S&P 500 Dataset](https://www.kaggle.com/datasets/camnugent/sandp500)
+- Jie Zou et al., *Expert Systems with Applications*, 2024. [DOI](https://doi.org/10.1016/j.eswa.2023.122801)
+
+---
 
