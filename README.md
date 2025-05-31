@@ -22,8 +22,50 @@ This project explores the use of artificial intelligence to develop trading stra
 - Features: `Open`, `High`, `Low`, `Close`, `Volume`
 
 ---
+## Main Approach
 
-## Main Structure
+### Main Structure
 
-![Model Architecture](image/main_structure.png)
+![main_structure](image/main_structure_white.png)
+
+### Enviroment
+
+#### Settings
+
+- Simplified options markets
+- European options (7-day expiration)
+- Only at-the-money (ATM) options
+- Premium = 1% * close_price
+
+#### Action space
+
+1. hold
+2. buy call (predict rise)
+3. buy put (predict fall)
+
+#### Reward
+
+base on the profit of selected action
+![reward](image/reward.png)
+
+### Price Predictor
+
+#### Linear Regreasion (baseline)
+
+- Predict the future price by linear regreassion
+
+#### LSTM
+
+- Input Features: OHLC, Volume, MA5, MA10, RSI, MACD
+- Architecture: LSTM → Fully Connected Layer → Predicted Price
+
+#### Random Forest
+
+- Features: OHLC, MA5/10, Volatility
+- Bootstrap + Random Feature Selection
+- Averaged predictions over multiple trees
+
+### Trading Agent
+
+
 
