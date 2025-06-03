@@ -135,7 +135,7 @@ $$
 
 - Stock: NRG
 - Period: 2017/02~2018/02
-- Initial princliple = 1000
+- Initial princliple = 10000
 - DCA: spent 200$ per 5 days, cost = total spent money 
 - PPO & PPO+LSTM: quantity=100, cost = total premium
 
